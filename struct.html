@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="struct">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<ul ng-controller="StudentListController">
+		<li ng-repeat="student in students">
+			<a href="/student/view/{{student.id}}">{{student.name}}</a>
+		</li>
+	</ul>
+	<table ng-controller="AlbumController">
+		<tr ng-repeat="truck in albums">
+			<td>{{$first}} {{$middle}} {{$last}}</td>
+			<td>{{$index+1}}</td>
+			<td>{{truck.name}}</td>
+			<td>{{truck.duration}}</td>
+		</tr>
+	</table>
+	<div ng-controller="ShowHiddenController">
+		<button ng-click="toggle()">toggle</button>
+		<div ng-show="meunState.show">显示隐藏</div>
+	</div>
+	<script src="./vendor/angular/angular.js"></script>
+	<script src="./vendor/controller/studentController.js"></script>
+</body>
+
+</html>

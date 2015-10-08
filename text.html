@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body ng-controller="TextController">
+	<input type="text" ng-model="message.ngBind">
+	<p>{{message.someText}}</p>
+	<p ng-bind="message.ngBind"></p>
+	<form action="" ng-controller="formController">
+		<input type="checkbox" ng-model="youCheckedIt">
+	</form>
+	<form action="" ng-controller="startupController" ng-submit="requestFunding()">
+		<!--<label>starting:<input type="text" ng-model="funding.startingEstimate" ng-change="computeNeeded()"></label>-->
+		<label>starting:
+			<input type="text" ng-model="funding.startingEstimate">
+		</label>
+		<p>Recommendation:{{funding.needed}}</p>
+		<input type="text" ng-model="funding.startingEstimate">
+		<p>
+			<button type="submit">FundStartUp</button>
+		</p>
+		<p>
+			<button type="button" ng-click="reset()">Reset</button>
+		</p>
+	</form>
+	<div ng-controller="eventController">
+		<p ng-click="click()">click</p>
+		<p ng-dblclick="dbclick()" ng-mouseover="over()">dbclick</p>
+	</div>
+	<div class="m-nav" ng-controller="navController">
+		<div class="navbar" ng-controller="NavController">
+			<ul>
+				<li class="meun-item" ng-click="doSomething()">1</li>
+			</ul>
+		</div>
+		<div class="contentArea" ng-controller="ContentAreaController">
+			<div ng-click="doSomething()">2</div>
+		</div>
+		<p ng-click="doSomething()">3</p>
+	</div>
+	<script src="angular.js"></script>
+	<script>
+		// var message={};
+		// message.someText="You have started your journey!";
+		// function TextController($scope){
+		// 	$scope.message=message;
+		// }
+		var myAppModule=angular.module('myApp',[]);
+		myAppModule.controller('TextController',function($scope){
+			var message={};
+			message.someText="You have started your journey!";
+			message.ngBind="Bind text"
+			$scope.message=message;
+		})
+		myAppModule.controller('formController',function($scope){
+			$scope.youCheckedIt=true;
+		})
+		myAppModule.controller('startupController',function($scope){
+			$scope.funding={
+				startingEstimate:0
+			};
+			// $scope.computeNeeded=function(){
+			// 	$scope.funding.needed=$scope.funding.startingEstimate*10;
+			// }
+			function computeNeeded(){
+				$scope.funding.needed=$scope.funding.startingEstimate*10;
+			}
+			$scope.$watch('funding.startingEstimate',computeNeeded);
+			$scope.requestFunding=function(){
+				alert("sorry,please get more customers first.")	
+			};
+			$scope.reset=function(){
+				console.log("reset");
+				$scope.funding.startingEstimate=0;
+			}
+		})
+		myAppModule.controller('eventController',function($scope){
+			$scope.click=function(){
+				console.log("click");
+			}
+			$scope.dbclick=function(){
+				console.log("double click");
+			}
+			$scope.over=function(){
+				console.log("over it!")
+			}
+		})
+		myAppModule.controller('NavController',function($scope){
+			$scope.doSomething=function(){
+				console.log("111");
+			}
+		})
+		myAppModule.controller('ContentAreaController',function($scope){
+			$scope.doSomething=function(){
+				console.log("222");
+			}
+		})
+		myAppModule.controller('navController',function($scope){
+			$scope.doSomething=function(){
+				console.log("333");
+			}
+		})
+	</script>
+</body>
+
+</html>
