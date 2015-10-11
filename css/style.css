@@ -1,0 +1,28 @@
+.meun-disable-false{
+	width: 100px;
+	line-height: 60px;
+	background: deepskyblue;
+	color: yellow;
+}
+.meun-disable-true{
+	width: 100px;
+	line-height: 60px;
+	background: gray;
+	color: red;
+}
+.error{
+	background: red;
+	font-family: "微软雅黑";
+}
+.warning{
+	background: yellow;
+}
+.message{
+	background: deepskyblue;
+}
+.big{
+	font-size: 24px;
+}
+.selected{
+	background: lightgreen;
+}

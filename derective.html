@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="FocusController">
+    <button>a</button>
+    <button ngbk-focus ng-click="click()">b</button>
+    <script src="./vendor/angular/angular.js"></script>
+    <script>
+        var appModule=angular.module('app',[]);
+        appModule.directive('ngbkFocus',function(){
+            return {
+                link:function(scope,ele,attrs,controller){
+                    ele[0].focus()
+                }
+            }
+        })
+        appModule.controller('FocusController', function ($scope) {
+            $scope.click=function(){
+                alert(1);
+            }
+        })
+    </script>
+</body>
+</html>

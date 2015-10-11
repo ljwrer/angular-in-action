@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="course">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="CourseController">
+<div ng-repeat="course in courses">
+    <h1>{{course.provider}}</h1>
+    <img ng-src="{{course.bigPhotoUrl}}" alt=""/>
+</div>
+<script src="./vendor/angular/angular.js"></script>
+<script>
+    var courseModule = angular.module('course', []);
+    courseModule.factory('Courses', function ($http) {
+        var courses={};
+        courses.query=function(){
+            return $http.get('http://study.163.com/webDev/hotcouresByCategory.htm');
+        }
+        return courses;
+    });
+    courseModule.controller('CourseController',function($scope,Courses){
+        Courses.query().success(function(data){
+            $scope.courses=data;
+        });
+    })
+</script>
+</body>
+</html>

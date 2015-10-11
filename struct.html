@@ -4,12 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 </head>
 
 <body>
 	<ul ng-controller="StudentListController">
 		<li ng-repeat="student in students">
-			<a href="/student/view/{{student.id}}">{{student.name}}</a>
+			<a ng-href="/student/view/{{student.id}}">{{student.name}}</a>
 		</li>
 	</ul>
 	<table ng-controller="AlbumController">
@@ -24,7 +25,28 @@
 		<button ng-click="toggle()">toggle</button>
 		<div ng-show="meunState.show">显示隐藏</div>
 	</div>
+	<div ng-controller="StyleController">
+		<div>
+			<p class="meun-disable-{{isDisabled}}">菜单按钮</p>
+			<button ng-click="disable()">禁用菜单按钮</button>
+		</div>
+		<div>
+			<div ng-class="{error:isError,warning:isWarning}">{{messageText}}</div>
+			<button ng-click="showError()">显示错误</button>
+			<button ng-click="showWarning()">显示警告</button>
+		</div>
+		<div ng-class="['message','big']">big message</div>
+		<div ng-class="haha">big message</div>
+		<div ng-class="[haha,{error:true}]">big message</div>
+		<table>
+			<tr ng-repeat="hero in heroList" ng-click="select($index)" ng-class="{selected:$index==slectedRow}">
+				<td>{{hero.name}}</td>
+				<td>{{hero.country}}</td>
+			</tr>
+		</table>		
+	</div>
 	<script src="./vendor/angular/angular.js"></script>
+	<!--<script src="./angular.js"></script>-->
 	<script src="./vendor/controller/studentController.js"></script>
 </body>
 
